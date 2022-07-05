@@ -34,8 +34,9 @@ import VueSocketIO from "vue-socket.io"
 
 // Vue.use(new VueSocketIO({
 //   debug: true,
-//   connection: 'http://192.168.205.84:3001',
+//   connection: 'http://www.wdhcj.cn:3001',
 // }))
+
 
 Vue.use(ElementUI, { zhLocale })
 
