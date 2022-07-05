@@ -99,6 +99,21 @@ export const constantRoutes = [{
         }
       },
       {
+        path: 'addCoupon',
+        name: 'addCoupon',
+        component: () => import('../../src/views/market/addmarket/index.vue')
+      },
+      {
+        path: 'couponDetail',
+        name: 'couponDetail',
+        component: () => import('../../src/views/market/marketCoupon/marketdetail.vue')
+      },
+      {
+        path: 'editCoupon',
+        name: 'editCoupon',
+        component: () => import('../../src/views/market/marketCoupon/editmarket.vue')
+      },
+      {
         path: "market",
         name: '秒杀活动列表',
         component: () => import('@/views/market/active/index.vue'),

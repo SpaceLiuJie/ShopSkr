@@ -26,7 +26,7 @@ module.exports = {
     proxy: {
       '/dev-api': {
         // target: 'http://localhost:3000/',
-        target: 'http://192.168.205.192:3000',
+        target: 'http://192.168.205.84:3000',
         changeOrigin: true,
         pathRewrite: {
           '^/dev-api': ''
@@ -35,7 +35,7 @@ module.exports = {
       },
       '/uploadimg': {
         // target: 'http://www.dreamqd.cn:5100',
-        target: 'http://192.168.205.192:3000',
+        target: 'http://192.168.205.84:3000',
         changeOrigin: true,
         pathRewrite: {
           '^/uploadimg': ''
@@ -43,7 +43,7 @@ module.exports = {
       },
       '/prod-api': {
         // target: 'http://www.wdhcj.cn:3000/',
-        target: 'http://192.168.205.192:3000',
+        target: 'http://192.168.205.84:3000',
         changeOrigin: true,
         pathRewrite: {
           '^/prod-api': ''
