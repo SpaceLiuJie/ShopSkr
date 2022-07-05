@@ -32,10 +32,10 @@ import VueSocketIO from "vue-socket.io"
 // }
 
 
-Vue.use(new VueSocketIO({
-  debug: true,
-  connection: 'http://www.wdhcj.cn:3001',
-}))
+// Vue.use(new VueSocketIO({
+//   debug: true,
+//   connection: 'http://www.wdhcj.cn:3001',
+// }))
 
 
 Vue.use(ElementUI, { zhLocale })
