@@ -25,6 +25,7 @@ export default {
   position: relative;
   /* overflow: hidden; */
 }
+
 .fixed-header+.app-main {
   padding-top: 50px;
 }
@@ -32,9 +33,10 @@ export default {
 
 <style lang="scss">
 // fix css style bug in open el-dialog
-.app-main{
-  padding:0 20px;
+.app-main {
+  padding: 0 20px;
 }
+
 .el-popup-parent--hidden {
   .fixed-header {
     padding-right: 15px;
