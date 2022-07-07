@@ -143,6 +143,22 @@ export const constantRoutes = [{
         }
       },
       {
+        path: 'orderDetail/:order_id/:status',
+        name: 'orderDetail',
+        component: () => import('@/views/oms/order/orderDetail'),
+        meta: { title: '订单详情' },
+        props: true,
+        hidden: true
+      },
+      {
+        path: 'deliverOrderList/:order_id',
+        name: 'deliverOrderList',
+        component: () => import('@/views/oms/order/deliverOrderList'),
+        meta: { title: '发货列表' },
+        hidden: true,
+        props: true
+      },
+      {
         path: 'returnApply',
         name: 'returnApply',
         component: () => import('@/views/oms/apply/index'),
@@ -150,6 +166,14 @@ export const constantRoutes = [{
           title: '退货申请处理',
           icon: 'order-return'
         }
+      },
+      {
+        path: 'returnApplyDetail/:id/:order_id',
+        name: 'returnApplyDetail',
+        component: () => import('@/views/oms/apply/applyDetail'),
+        meta: { title: '退货原因详情' },
+        hidden: true,
+        props: true
       },
     ]
   },
