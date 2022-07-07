@@ -12,7 +12,7 @@ import '@/styles/index.scss' // global css
 import App from './App'
 import store from './store'
 import router from './router'
-import VCharts from 'v-charts'
+import VCharts from 'v-charts' //曲线插件
 
 import '@/icons' // icon
 import '@/permission' // permission control

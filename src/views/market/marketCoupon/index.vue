@@ -14,7 +14,8 @@
                 <span class="screen">筛选搜索</span>
                 <div class="input">
                     <el-input style="width:200px" v-model="input" placeholder="优惠券名称"></el-input>
-                    <el-button style="width:120px;margin-left: 20px;" type="primary" icon="el-icon-search">查询搜索
+                    <el-button style="width:120px;margin-left: 20px;" type="primary" icon="el-icon-search"
+                        @click="searchHandel()">查询搜索
                     </el-button>
                 </div>
             </div>
@@ -132,7 +133,7 @@
 </template>
 
 <script>
-import { getVoucher } from '../../../api/coupon.js'
+import { getVoucher, deleteVoucher, selectVoucher } from '../../../api/coupon.js'
 import { mapGetters } from 'vuex'
 export default {
     name: 'App',
@@ -170,9 +171,51 @@ export default {
                 }
             });
         },
+        // 查询
+        searchHandel() {
+            let name = this.input
+            selectVoucher({ name }).then(res => {
+                if (res.data.code === 401) {
+                    console.log("参数不正确");
+                    this.tableData = [];
+                }
+                if (res.data.code === 402) {
+                    console.log("未查询到数据");
+                    this.tableData = [];
+                }
+                if (res.data.code === 200) {
+                    console.log(res, "查询成功");
+                    this.tableData = res.data.res
+                    this.searchVoucher();
+                }
+            })
+                .catch(err => {
+                    console.log(err, "查询优惠券列表失败");
+                });
+        },
+        // 删除
+        deleteHandle(index, row) {
+            // console.log(row.id, '+++=======+++');
+            let id = row.id;
+            deleteVoucher({ id }).then(res => {
+                // console.log(res, '+=-+-=+-=+_=_++_++-++');
+                if (res.data.code == 200) {
+                    // console.log(res, "删除成功");
+                    this.searchVoucher()
+                    this.$message({
+                        showClose: true,
+                        message: '删除成功',
+                        type: 'success'
+                    });
+                }
+            }).catch(err => {
+                console.log(err, "删除失败");
+            });
+        },
         searchVoucher() {
-            let store_id = this.storeInfo.id
+            let store_id = this.storeInfo.id;
             getVoucher({ store_id }).then(res => {
+                // console.log(res, '++++++++++==========++++++++++==========');
                 this.tableData = res.data.data;
             }).catch(err => {
                 console.log(err, "获取优惠券列表失败");

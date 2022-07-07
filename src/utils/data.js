@@ -18,11 +18,9 @@ export function formatDate(date, fmt) {
     }
     return fmt;
   }
-  
   function padLeftZero(str) {
     return ('00' + str).substr(str.length);
   }
-  
   export function str2Date(dateStr, separator) {
     if (!separator) {
       separator = "-";
@@ -40,4 +38,3 @@ export function formatDate(date, fmt) {
     let date = new Date(year, month - 1, day);
     return date;
   }
-  
