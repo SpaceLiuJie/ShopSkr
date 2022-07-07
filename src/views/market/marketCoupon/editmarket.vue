@@ -119,7 +119,7 @@ export default {
     created() {
         let id = this.$route.query.id
         seeVoucher({ id }).then(res => {
-            console.log(res.data.res);
+            // console.log(res.data.res);
             this.ruleForm.id = id
             this.ruleForm.deno = res.data.res[0].deno
             this.ruleForm.condition = res.data.res[0].condition
