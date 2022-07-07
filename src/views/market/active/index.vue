@@ -211,9 +211,10 @@ export default {
     methods: {
         // 获取秒杀信息
         getSpike(param) {
-            getSpike(param).then((res) => {
-                console.log(param);
-                console.log(res, '+++===+++===+++===+++===+++===+++===');
+            // console.log(param);
+            getSpike(param).then(res => {
+                // console.log(param);
+                // console.log(res, '+++===+++===+++===+++===+++===+++===');
                 this.tableData = res.data.res
                 let nowTime = new Date().getTime();
                 for (let i = 0; i < this.tableData.length; i++) {
@@ -233,8 +234,8 @@ export default {
                         this.tableData[n].active = "活动未开始"
                     }
                 }
-            }).catch((err) => {
-                console.log(err);
+            }).catch(() => {
+                console.log('获取失败！！！！！');
             });
         },
 
@@ -246,10 +247,10 @@ export default {
             this.editForm.star_time = new Date(this.editForm.star_time).getTime();
             this.editForm.end_time = new Date(this.editForm.end_time).getTime();
             addSpike(this.editForm).then(res => {
-                console.log(res.data.code, '添加活动模块0000000');
+                // console.log(res.data.code, '添加活动模块0000000');
                 let id = this.storeInfo.id
                 this.getSpike({ id });
-                console.log("刷新成功");
+                // console.log("刷新成功");
                 if (res.data.code == 200) {
                     this.$message({
                         message: '添加成功'
@@ -268,7 +269,7 @@ export default {
                     })
                 }
             }).catch((err) => {
-                console.log("添加活动模块失败");
+                console.log(err, "添加活动模块失败");
             });
             this.dialogVisible = false;
         },
@@ -276,29 +277,25 @@ export default {
         // 查询
         searchHandel() {
             slectSpike({ active_name: this.input }).then(res => {
-                console.log(res);
+                // console.log(res);
                 let nowTime = new Date().getTime();
-                let starTime = new Date(res.data.res[0].star_time).getTime();
-                let endTime = new Date(res.data.res[0].end_time).getTime();
-                if (nowTime >= starTime && nowTime <= endTime) {
+                this.starTime = new Date(res.data.res[0].star_time).getTime();
+                this.endTime = new Date(res.data.res[0].end_time).getTime();
+                if (nowTime >= this.starTime && nowTime <= this.endTime) {
                     this.selectData.active = "活动进行中"
-                } else if (nowTime > endTime) {
+                } else if (nowTime > this.endTime) {
                     this.selectData.active = "活动已结束"
                 } else {
                     this.selectData.active = "活动未开始"
                 }
                 this.selectData = res.data.res
-                console.log(res.data.res);
+                // console.log(res.data.res);
                 this.selectVisible = true
             }).catch(err => {
                 console.log(err)
             })
         },
-
-
-
-
-
+        // 获取秒杀商品价格
         getspu(row) {
             getSpu({ id: row.spu_id }).then(res => {
                 this.spuData = res.data.data[0]
@@ -314,15 +311,10 @@ export default {
 
         // 删除活动
         handleDelete(index, id) {
-            delSpike({ id: id }).then((res) => {
-                this.getSpike({ id: 1 });
+            delSpike({ id }).then((res) => {
+                this.getSpike({ id });
             }).catch((err) => {
-            });
-            delSpike({ id: id }).then((res) => {
-                // console.log(res);
-                this.getSpike({ id: 1 });
-            }).catch((err) => {
-                console.log(err);
+                console.log(err, '删除失败！！');
             });
         },
         // 更新商品模块
@@ -331,7 +323,7 @@ export default {
             this.editData = row;
             this.editVisible = true;
         },
-        // 点击确认后编辑 
+        // 点击确认后编辑
         handleEdit(data) {
             data.star_time = new Date(data.star_time).getTime();
             data.end_time = new Date(data.end_time).getTime();
@@ -343,7 +335,7 @@ export default {
                     })
                 }
             }).catch(err => {
-                // console,log(err)
+                console, log(err, '秒杀获取失败！！！')
             })
             this.editVisible = false
             this.selectVisible = false

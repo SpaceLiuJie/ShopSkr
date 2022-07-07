@@ -186,7 +186,7 @@ export default {
                 if (res.data.code === 200) {
                     console.log(res, "查询成功");
                     this.tableData = res.data.res
-                    // this.searchVoucher();
+                    this.searchVoucher();
                 }
             })
                 .catch(err => {
@@ -195,12 +195,12 @@ export default {
         },
         // 删除
         deleteHandle(index, row) {
-            console.log(row.id, '+++=======+++');
+            // console.log(row.id, '+++=======+++');
             let id = row.id;
             deleteVoucher({ id }).then(res => {
-                console.log(res, '+=-+-=+-=+_=_++_++-++');
+                // console.log(res, '+=-+-=+-=+_=_++_++-++');
                 if (res.data.code == 200) {
-                    console.log(res, "删除成功");
+                    // console.log(res, "删除成功");
                     this.searchVoucher()
                     this.$message({
                         showClose: true,
@@ -215,6 +215,7 @@ export default {
         searchVoucher() {
             let store_id = this.storeInfo.id;
             getVoucher({ store_id }).then(res => {
+                // console.log(res, '++++++++++==========++++++++++==========');
                 this.tableData = res.data.data;
             }).catch(err => {
                 console.log(err, "获取优惠券列表失败");
