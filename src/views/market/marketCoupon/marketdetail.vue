@@ -47,7 +47,7 @@ export default {
         selectDetail() {
             let id = this.$route.query.id
             seeVoucher({ id }).then(res => {
-                console.log(res, '+++++++++++----------++++++++++');
+                // console.log(res, '+++++++++++----------++++++++++');
                 if (res.data.code == 200) {
                     this.tableData = res.data.res;
                     for (let i = 0; i < this.tableData.length; i++) {
@@ -67,7 +67,7 @@ export default {
                             this.tableData[k].status = "已过期";
                         }
                     }
-                    console.log(res, "查看优惠券详情成功");
+                    // console.log(res, "查看优惠券详情成功");
                 }
             }).catch(err => {
                 console.log(err, "查看优惠券详情失败");
