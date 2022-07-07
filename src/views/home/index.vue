@@ -178,7 +178,7 @@ export default {
             const end = new Date();
             end.setTime(start.getTime() + 1000 * 60 * 60 * 24 * 7); //一周的时间差
             this.orderCountDate = [start, end];
-            console.log(this.orderCountDate);
+            // console.log(this.orderCountDate);
         },
         getData() {
             setTimeout(() => {
