@@ -77,7 +77,14 @@ export const constantRoutes = [{
       {
         path: '/product',
         redirect: '/product/productList'
-      }
+      },
+      {
+        path: 'addBrand',
+        name: 'addBrand',
+        component: () => import('@/views/pms/brand/add'),
+        meta: { title: '添加品牌' },
+        hidden: true
+      },
     ]
   },
   {
