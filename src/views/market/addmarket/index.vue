@@ -94,12 +94,12 @@ export default {
         submitForm(formName) {
             this.ruleForm.start.date1 = new Date(this.ruleForm.start.date1).getTime();
             this.ruleForm.start.date2 = new Date(this.ruleForm.start.date2).getTime();
-            console.log(this.ruleForm.start.date2);
+            // console.log(this.ruleForm.start.date2);
             this.ruleForm.end.date1 = new Date(this.ruleForm.end.date1).getTime();
             this.ruleForm.end.date2 = new Date(this.ruleForm.end.date2).getTime();
-            console.log(this.ruleForm.end.date2);
+            // console.log(this.ruleForm.end.date2);
             let store_id = this.storeInfo.id;
-            console.log(formName);
+            // console.log(formName);
             let spu_id = this.ruleForm.spu_id;
             let start_time = this.ruleForm.start.date1;
             let end_time = this.ruleForm.end.date1;
@@ -112,6 +112,7 @@ export default {
                 condition: this.ruleForm.condition,
                 name: this.ruleForm.name,
             }).then(res => {
+                console.log(res,'++++++++++++++++++++++++++++++++++++++++++++++++++++');
                 if (res.data.code == 401) {
                     console.log("入参不符");
                     this.$message({
