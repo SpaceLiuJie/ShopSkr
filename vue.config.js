@@ -27,7 +27,7 @@ module.exports = {
       '/dev-api': {
         // target: 'http://localhost:3000/',
         // target: 'http://192.168.205.84:3000',
-        target: 'http://192.168.205.192:3000',
+        target: 'http://192.168.205.186:3000',
         changeOrigin: true,
         pathRewrite: {
           '^/dev-api': ''

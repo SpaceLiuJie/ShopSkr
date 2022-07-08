@@ -54,7 +54,7 @@ export default {
         }
         return {
             infoModifyForm: {
-                avatarSrc: "https://t13.baidu.com/it/u=969800686,938293722&fm=224&app=112&size=w931&n=0&f=JPEG&fmt=auto?sec=1657299600&t=8fdaad1712f95098581f0519b11f43d9",
+                avatarSrc: "",
                 profile: "", //头像
                 store_Name: "", //店铺名称
                 store_adress: "", //店铺地址
@@ -106,7 +106,7 @@ export default {
         submitForm(infoModifyForm) {
             this.$refs.infoModifyForm.validate((valid) => {
                 if (valid) {
-                    console.log("456",infoModifyForm);
+                    // console.log("456",infoModifyForm);
                     // return
                      const loading = this.$loading({
                         lock: true,
@@ -129,13 +129,14 @@ export default {
                             if (res.data.code == 200) {
                                
                                  loading.close();
+                                 
                                 sessionStorage.setItem('user_avatar', this.infoModifyForm.avatarSrc)
                                 console.log("成功");
                                 this.$message({
                                     message: "修改成功！",
                                     type: "success",
                                 });
-                                location.reload();
+                                location.reload(); //重新载入当前文档:
                             } else {
                                 loading.close();
                                 this.$message({
@@ -191,7 +192,7 @@ export default {
             region: "南京"
                ​
             tel: "12341234123" */
-
+            console.log(res);
             this.infoModifyForm.store_Name = res.data.data[0].name
             this.infoModifyForm.store_adress = res.data.data[0].address
             this.infoModifyForm.contact = res.data.data[0].tel
@@ -200,6 +201,9 @@ export default {
             this.infoModifyForm.id = res.data.data[0].id
             this.infoModifyForm.store_introduction = res.data.data[0].desc
             this.infoModifyForm.avatar = res.data.data[0].avatar
+            let data = sessionStorage.getItem("user_avatar")
+            // console.log(data,"123131113");
+            this.infoModifyForm.avatarSrc= data
         })
             .catch((err) => {
                 console.log(err);
