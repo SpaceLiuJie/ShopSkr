@@ -186,13 +186,12 @@ export default {
                 if (res.data.code === 200) {
                     console.log(res, "查询成功");
                     this.tableData = res.data.res
-                    this.searchVoucher();
                 }
-            })
-                .catch(err => {
-                    console.log(err, "查询优惠券列表失败");
-                });
+            }).catch(err => {
+                console.log(err, "查询优惠券列表失败");
+            });
         },
+
         // 删除
         deleteHandle(index, row) {
             // console.log(row.id, '+++=======+++');
