@@ -51,3 +51,11 @@ export const getBackStockDetail=(data)=>{
         data
     })
 }
+// 接受退款
+export const updateBackStock=(data)=>{
+    return service({
+        method:'post',
+        url:'order/updateBackStock',
+        data,
+    })
+}

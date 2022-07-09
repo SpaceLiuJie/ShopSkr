@@ -17,7 +17,9 @@
         <div v-for="(item, index) of backStock.skus" :key="index">
           <el-row>
             <el-col :span="3" class="table-cell">{{ item.id }}</el-col>
-            <el-col :span="4" class="table-cell">{{ item.imgs }}</el-col>
+            <el-col :span="4" class="table-cell">
+            <img style="width: 40%;height: 100%;" :src="shopImage(item.imgs)[0].small" alt="">
+            </el-col>
             <el-col :span="4" class="table-cell">{{ item.title }}</el-col>
             <el-col :span="3" class="table-cell">￥{{ item.price}}</el-col>
             <el-col :span="3" class="table-cell">{{ item.param }}</el-col>
@@ -115,10 +117,13 @@
           <el-col
             class="form-border font-small"
             :span="18"
-            style="height: 100px"
           >
-            <div
+            <!-- <div
               v-for="(item, index) in fromatImgs(backStock.imgs)"
+              :key="index"
+            > -->
+            <div
+              v-for="(item, index) in 6"
               :key="index"
             >
               <img
@@ -130,6 +135,16 @@
                 "
                 :src="item"
               />
+              <!-- .small -->
+              <!-- <img
+                style="
+                  width: 80px;
+                  height: 80px;
+                  float: left;
+                  margin-right: 20px;
+                "
+                :src="item.normal"
+              /> -->
             </div>
           </el-col>
         </el-row>
@@ -221,11 +236,18 @@ import { updateBackStock, deleteOrder,getBackStockDetail } from "@/api/order";
 export default {
     data(){
         return{
-            backStock:[]
+            backStock:[],
         }
     },
   props: ["order_id", "id"],
   methods: {
+    shopImage(imgs){
+      return JSON.parse(imgs);
+    },
+    fromatImgs(imgs) {
+    // console.log(imgs.replace(,''));
+      // return JSON.parse(imgs);
+    },
     handelDeleteBackStock() {
       this.$confirm("此操作将永久删除该条退款信息, 是否继续?", "提示", {
         confirmButtonText: "确定",
@@ -233,8 +255,8 @@ export default {
         type: "warning",
       })
         .then(() => {
-          deleteOrder({ order_id: this.order_id }).then((res) => {
-            if (res.code == 200) {
+          deleteOrder({ id: this.order_id }).then((res) => {
+            if (res.data.code == 200) {
               this.$router.back;
             }
           });
@@ -268,16 +290,12 @@ export default {
             message: "取消操作",
           });
         });
-    },
-    fromatImgs(imgs) {
-    // console.log(imgs);
-      // return JSON.parse(imgs);
-    },
+    }
   },
   created() {
     getBackStockDetail({ order_id: this.order_id }).then((res) => {
         this.backStock = res.data.data;
-        console.log(JSON.parse(this.backStock.imgs));
+        // console.log(this.backStock.imgs);
     });
   },
   filters: {

@@ -59,7 +59,7 @@ export default {
   created() {
     getBackStock({ order_id: this.storeInfo.id }).then((res) => {
       this.backStockList = res.data.data;
-      console.log(res.data.data);
+      // console.log(res.data.data);
     });
   },
   filters: {
