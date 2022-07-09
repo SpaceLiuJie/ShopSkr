@@ -61,7 +61,7 @@ export function getCateGory(data){
   })
 }
 
-// 获取商品品牌
+// 获取商品品类
 export function getBrand(data){
   return service({
       url:'/wares/getBrand',
@@ -70,3 +70,45 @@ export function getBrand(data){
   })
 }
 
+// // 根据商店获取品牌
+// export function getStorBrands(data){
+//   return service({
+//     url:'/wares/getStorBrands',
+//     method:'post',
+//     data:data
+//   })
+// }
+
+// 获取所有品牌
+export function getBrands(data){
+  return service({
+      url:'/wares/getBrands',
+      method:'post',
+      data:data
+  })
+}
+
+// 添加spu
+export function addSpu(data){
+  return service({
+      url:'/store/addSpu',
+      method:'post',
+      data:data
+  })
+}
+// 获取squ的数据
+export function getSpu(data){
+  return service({
+      url:'/store/getSpu',
+      method:'post',
+      data:data
+  })
+}
+// 通过spu_id查询t_brand中的name
+export function getBrandName(data){
+  return service({
+    url:'/store/getBrandName',
+    method:'post',
+    data:data
+  })
+}

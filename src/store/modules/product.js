@@ -3,7 +3,8 @@ const state = {
 
     },
     category_id:'',
-    spuTitle:''
+    spuTitle:'',
+    rowdetail:'',
 }
 
 const mutations = {
@@ -15,6 +16,9 @@ const mutations = {
     },
     UPDATE_SPUTITLE(state,spuTitle){
         state.spuTitle = spuTitle
+    },
+    GETROW(state,id){
+        state.rowdetail = id;
     }
 }
 
@@ -27,6 +31,9 @@ const actions = {
     },
     updateSpuTitle({commit},data){
         commit('UPDATE_SPUTITLE',data)
+    },
+    getRow({commit},data){
+        commit('GETROW',data)
     }
 }
 

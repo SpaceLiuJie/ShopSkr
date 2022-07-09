@@ -187,7 +187,18 @@ export default {
         });
     },
     // 商品修改
-    handleShop(index, row) {},
+    handleShop(index, row) {
+      // this.shopId = row.id;
+      // console.log(row.id);
+      this.$store.dispatch('product/getRow',row.id);
+      console.log(row);
+      this.$router.push({
+        path: "/product/addProduct",
+        query: {
+          id: row.id,
+        },
+      });
+    },
     // 添加优惠卷
     handleAddCoupon() {
       // this.$router.push('/market/addCoupon')
@@ -212,15 +223,17 @@ export default {
               // console.log(data);
             })
             .then(() => {
-              deleteSkuShop(data2).then((res) => {
-                // console.log(res);
-                this.$message({
-                  type: "success",
-                  message: "删除成功!",
+              deleteSkuShop(data2)
+                .then((res) => {
+                  // console.log(res);
+                  this.$message({
+                    type: "success",
+                    message: "删除成功!",
+                  });
+                })
+                .catch((err) => {
+                  console.log(err);
                 });
-              }).catch((err)=>{
-                console.log(err);
-              });
             });
         })
         .catch(() => {
